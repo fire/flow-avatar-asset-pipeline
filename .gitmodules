@@ -7,3 +7,9 @@
 [submodule "extern/meshoptimizer"]
 	path = extern/meshoptimizer
 	url = https://github.com/infosia/meshoptimizer.git
+[submodule "https://github.com/apple/foundationdb.git"]
+	path = https://github.com/apple/foundationdb.git
+	url = extern/fdb
+[submodule "extern/fdb"]
+	path = extern/fdb
+	url = https://github.com/apple/foundationdb.git
