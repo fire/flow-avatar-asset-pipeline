@@ -15,7 +15,7 @@ defmodule Membrane.Demo.VideoPipeline do
       hackney: %Hackney.Source{
         location: "https://membraneframework.github.io/static/video-samples/test-video.h264"
       },
-      parser: %Parser{framerate: {30, 1}},
+      parser: %Parser{framerate: {60, 1}},
       decoder: Decoder,
       sdl: SDL.Player
     ]
