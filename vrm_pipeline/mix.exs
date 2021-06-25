@@ -36,6 +36,8 @@ defmodule Membrane.Demo.SimplePipeline.MixProject do
       {:membrane_portaudio_plugin, "~> 0.7.0"},
       {:membrane_ffmpeg_swresample_plugin, "~> 0.7.0"},
       {:membrane_mp3_mad_plugin, "~> 0.7.0"},
+      {:membrane_element_tee, "~> 0.5.0"},
+      {:membrane_element_fake, "~> 0.5.0"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
   end

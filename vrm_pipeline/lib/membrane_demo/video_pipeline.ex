@@ -8,6 +8,7 @@ defmodule Membrane.Demo.VideoPipeline do
   alias Membrane.H264.FFmpeg.{Parser, Decoder}
   alias Membrane.Hackney
   alias Membrane.SDL
+  alias Membrane.Element.{Tee, Fake}
 
   @impl true
   def handle_init(_) do
@@ -15,16 +16,20 @@ defmodule Membrane.Demo.VideoPipeline do
       hackney: %Hackney.Source{
         location: "https://membraneframework.github.io/static/video-samples/test-video.h264"
       },
+      tee: Tee.Master,
       parser: %Parser{framerate: {60, 1}},
       decoder: Decoder,
-      sdl: SDL.Player
+      sdl: SDL.Player,
+      fake_sink: Fake.Sink.Buffers,
     ]
 
     links = [
       link(:hackney)
       |> to(:parser)
       |> to(:decoder)
-      |> to(:sdl)
+      |> to(:tee),
+      link(:tee) |> via_out(:master) |> to(:sdl),
+      link(:tee) |> via_out(:copy) |> to(:fake_sink)
     ]
 
     {{:ok, spec: %ParentSpec{children: children, links: links}}, %{}}
