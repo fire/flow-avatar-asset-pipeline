@@ -16,6 +16,10 @@ This demo shows how to create a pipeline that plays an mp3 file.
     ```bash
     apt install clang-format portaudio19-dev ffmpeg libavutil-dev libswresample-dev libmad0-dev
     ```
+    One-liner for Rocky Linux
+    ```bash
+    yum install portaudio-devel ffmpeg-devel libresample-devel libmad-devel SDL2-devel libav-devel
+    ```
     One-liner for MacOS
     ```bash
     brew install clang-format portaudio ffmpeg libmad
@@ -32,10 +36,6 @@ alias Membrane.Demo.SimplePipeline
 {:ok, pid} = SimplePipeline.start_link("sample.mp3")
 SimplePipeline.play(pid)
 ```
-
-## Sample License
-
-Sample is provided under Creative Commons. Song is called Swan Song by [Paper Navy](https://papernavy.bandcamp.com/album/all-grown-up).
 
 ## Copyright and License
 
