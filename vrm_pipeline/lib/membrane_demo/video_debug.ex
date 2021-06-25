@@ -1,6 +1,6 @@
 defmodule Membrane.Demo.VideoDebug.Sink.Buffers do
   @moduledoc """
-  Fake sink that ignores coming data. It makes demands in buffers.
+  Debug sink that inspect coming data. It makes demands in buffers.
   """
 
   use Membrane.Sink
@@ -13,7 +13,8 @@ defmodule Membrane.Demo.VideoDebug.Sink.Buffers do
   end
 
   @impl true
-  def handle_write_list(:input, buffers, _ctx, state) do
-    {{:ok, demand: {:input, length(buffers)}}, state}
+  def handle_write(:input, buffer, _ctx, state) do
+    IO.inspect(buffer)
+    {:ok, state}
   end
 end
