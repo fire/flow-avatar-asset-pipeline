@@ -11,10 +11,10 @@ defmodule Membrane.Demo.VideoPipeline do
   alias Membrane.Element.{Tee}
 
   @impl true
-  def handle_init(_) do
+  def handle_init(uri) do
     children = [
       hackney: %Hackney.Source{
-        location: "https://membraneframework.github.io/static/video-samples/test-video.h264"
+        location: uri
       },
       tee: Tee.Master,
       parser: %Parser{framerate: {60, 1}},
