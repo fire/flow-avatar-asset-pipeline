@@ -8,7 +8,7 @@ defmodule Membrane.Demo.VideoPipeline do
   alias Membrane.H264.FFmpeg.{Parser, Decoder}
   alias Membrane.Hackney
   alias Membrane.SDL
-  alias Membrane.Element.{Tee, Fake}
+  alias Membrane.Element.{Tee}
 
   @impl true
   def handle_init(_) do
@@ -20,7 +20,7 @@ defmodule Membrane.Demo.VideoPipeline do
       parser: %Parser{framerate: {60, 1}},
       decoder: Decoder,
       sdl: SDL.Player,
-      fake_sink: Fake.Sink.Buffers,
+      debug: Membrane.Demo.VideoDebug.Sink.Buffers,
     ]
 
     links = [
@@ -29,7 +29,7 @@ defmodule Membrane.Demo.VideoPipeline do
       |> to(:decoder)
       |> to(:tee),
       link(:tee) |> via_out(:master) |> to(:sdl),
-      link(:tee) |> via_out(:copy) |> to(:fake_sink)
+      link(:tee) |> via_out(:copy) |> to(:debug)
     ]
 
     {{:ok, spec: %ParentSpec{children: children, links: links}}, %{}}
