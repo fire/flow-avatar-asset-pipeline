@@ -32,9 +32,9 @@ This demo shows how to create a pipeline that plays an mp3 file.
 To start the demo pipeline run `mix run --no-halt run.exs` or type the following commands into an IEx shell (started by `iex -S mix`):
 
 ```elixir
-alias Membrane.Demo.SimplePipeline
-{:ok, pid} = SimplePipeline.start_link("sample.mp3")
-SimplePipeline.play(pid)
+alias Membrane.Demo.VideoPipeline
+{:ok, pid} = VideoPipeline.start_link()
+VideoPipeline.play(pid)
 ```
 
 ## Copyright and License
